@@ -6,7 +6,9 @@ export const criarLocacao = async (req, res) => {
       veiculoId,
       userId,
       dataInicio,
+      horarioRetirada,
       dataFinal,
+      horarioDevolucao,
       precoTotal,
       qtdDias
     } = req.body;
@@ -14,7 +16,9 @@ export const criarLocacao = async (req, res) => {
     const response = await criarLocacaoService(veiculoId,
       userId,
       dataInicio,
+      horarioRetirada,
       dataFinal,
+      horarioDevolucao,
       precoTotal,
       qtdDias
     );

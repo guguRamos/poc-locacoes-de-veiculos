@@ -1,7 +1,7 @@
 import Locacoes from "../models/Locacoes.js";
 import Veiculos from "../models/Veiculo.js"
 
-export const criarLocacaoService = async (veiculoId, usuarioId, dataInicio, dataFinal, precoTotal, qtdDias) => {
+export const criarLocacaoService = async (veiculoId, usuarioId, dataInicio, horarioRetirada, dataFinal, horarioDevolucao, precoTotal, qtdDias) => {
   const veiculoExistente = await Veiculos.findById(veiculoId)
 
   if (!veiculoExistente) {
@@ -18,6 +18,8 @@ export const criarLocacaoService = async (veiculoId, usuarioId, dataInicio, data
     veiculoId,
     usuarioId,
     dataInicio: new Date(dataInicio),
+    horarioRetirada,
+    horarioDevolucao,
     dataFinal: new Date(dataFinal),
     precoTotal: Number(precoTotal),
     qtdDias: Number(qtdDias)

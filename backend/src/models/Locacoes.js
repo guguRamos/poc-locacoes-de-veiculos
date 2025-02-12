@@ -10,8 +10,16 @@ const locacoesSchema = new mongoose.Schema({
   dataInicio: {
     type: Date, required: true
   },
+  horarioRetirada: {
+    type: String,
+    required: true
+  },
   dataFinal: {
     type: Date, required: true
+  },
+  horarioDevolucao: {
+    type: String,
+    required: true
   },
   precoTotal: {
     type: Number, required: true

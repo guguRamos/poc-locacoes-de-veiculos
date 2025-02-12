@@ -41,6 +41,10 @@ const MinhasLocacoes = () => {
     getLocacoes()
   }, [])
 
+  function formatarData(data) {
+
+  }
+
   return (
     <div>
       <h2 style={{ textAlign: 'center' }}>Listando minhas locações</h2>
@@ -52,6 +56,10 @@ const MinhasLocacoes = () => {
             <p>Marca: {data.veiculo.marca}</p>
             <p>Modelo: {data.veiculo.modelo}</p>
             <p>Ano: {data.veiculo.ano}</p>
+            <p>Dia de retirada: {new Date(data.dataInicio).toLocaleDateString('pt-BR')}</p>
+            <p>Horário retirada: {data.horarioRetirada}</p>
+            <p>Dia de devolução: {new Date(data.dataFinal).toLocaleDateString('pt-BR')}</p>
+            <p>Horario Devolução: {data.horarioDevolucao}</p>
             <p>Preço do dia: R$ {data.veiculo.precoDia}</p>
             <p style={{ fontWeight: '700' }}>Preço total: R$ {data.precoTotal}</p>
             <div style={{ display: 'flex', gap: "16px" }}>

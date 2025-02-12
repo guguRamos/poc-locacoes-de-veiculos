@@ -7,6 +7,8 @@ const AlugarVeiculo = () => {
   const { id } = useParams();
   const [veiculo, setVeiculo] = useState();
   const [dataInicio, setDataInicio] = useState()
+  const [horarioRetirada, setHorarioRetirada] = useState()
+  const [horarioDevolucao, setHorarioDevolucao] = useState()
   const [dataFinal, setDataFinal] = useState()
   const [qtdDias, setQtdDias] = useState(1)
   const navigate = useNavigate()
@@ -70,6 +72,8 @@ const AlugarVeiculo = () => {
       dataInicio,
       dataFinal,
       precoTotal: veiculo.precoDia * qtdDias,
+      horarioRetirada,
+      horarioDevolucao,
       qtdDias: calcularQtdDias()
     }
 
@@ -111,7 +115,7 @@ const AlugarVeiculo = () => {
 
           </div>
           <div style={{ marginTop: '24px' }}>
-            <label htmlFor="dataInicio">Data inicio: </label>
+            <label htmlFor="dataInicio">Data de retirada: </label>
             <input type="date" name="dataInicio" id="dataInicio"
               value={dataInicio}
               onChange={(e) => setDataInicio(e.target.value)}
@@ -121,10 +125,24 @@ const AlugarVeiculo = () => {
             />
           </div>
           <div style={{ marginTop: '24px' }}>
-            <label htmlFor="dataFinal">Data final: </label>
+            <label htmlFor="horarioRetirada">Hora retirada: </label>
+            <input type="time" name="horarioRetirada" id="horarioRetirada"
+              value={horarioRetirada}
+              onChange={(e) => setHorarioRetirada(e.target.value)}
+            />
+          </div>
+          <div style={{ marginTop: '24px' }}>
+            <label htmlFor="dataFinal">Data de devolução: </label>
             <input type="date" name="dataFinal" id="dataFinal"
               value={dataFinal}
               onChange={(e) => setDataFinal(e.target.value)}
+            />
+          </div>
+          <div style={{ marginTop: '24px' }}>
+            <label htmlFor="horarioDevolucao">Hora devolução: </label>
+            <input type="time" name="horarioDevolucao" id="horarioDevolucao"
+              value={horarioDevolucao}
+              onChange={(e) => setHorarioDevolucao(e.target.value)}
             />
           </div>
           <h4>Quantidade de dias: {qtdDias}</h4>
