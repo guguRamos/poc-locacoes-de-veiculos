@@ -12,22 +12,26 @@ const Header = () => {
         <nav>
           <ul style={{ listStyle: 'none' }}>
             <li
-              onClick={() => navigate('/')}
               style={{ cursor: 'pointer' }}
             >
-              Home
+              <a onClick={() => navigate("/")}>
+                Home
+              </a>
             </li>
             <li
-              onClick={() => navigate('/veiculos')}
+
               style={{ cursor: 'pointer' }}
             >
-              Veiculos
+              <a onClick={() => navigate("/veiculos")}>
+                Veiculos
+              </a>
             </li>
             <li
-              onClick={() => navigate('/locacoes/minhas-locacoes')}
               style={{ cursor: 'pointer' }}
             >
-              Minhas locações
+              <a onClick={() => navigate("/locacoes/minhas-locacoes")}>
+                Minhas locações
+              </a>
             </li>
           </ul>
         </nav>

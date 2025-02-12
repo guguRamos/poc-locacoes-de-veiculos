@@ -1,4 +1,4 @@
-import { apagarVeiculoService, criarVeiculoService, editarVeiculoService, listarVeiculosService } from "../services/veiculoService.js";
+import { apagarVeiculoService, criarVeiculoService, editarVeiculoService, listarVeiculoByIdService, listarVeiculosService } from "../services/veiculoService.js";
 
 export const criarVeiculo = async (req, res) => {
   try {
@@ -45,7 +45,8 @@ export const listarVeiculos = async (req, res) => {
 
     return res.status(200).json(response);
   } catch (error) {
-    return res.status(500).json({ message: "Erro ao listar", error });
+    console.error("Erro ao listar: ", error.message);
+    throw new Error("Erro ao listar ");
   }
 }
 
@@ -54,6 +55,18 @@ export const listarVeiculosUsuario = async (req, res) => {
     const { id } = req.params;
 
     const response = await listarVeiculosService(id);
+
+    return res.status(200).json(response);
+  } catch (error) {
+    return res.status(500).json({ message: "Erro ao listar", error });
+  }
+}
+
+export const listarVeiculoById = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const response = await listarVeiculoByIdService(id);
 
     return res.status(200).json(response);
   } catch (error) {

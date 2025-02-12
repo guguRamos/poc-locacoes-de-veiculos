@@ -1,27 +1,33 @@
 import Locacoes from "../models/Locacoes.js";
 import Veiculos from "../models/Veiculo.js"
 
-export const criarLocacaoService = async (veiculoId, userId, dataInicio, dataFinal, precoTotal) => {
-  const veiculoExistente = Veiculos.findById(veiculoId)
-  if (!veiculoExistente)
+export const criarLocacaoService = async (veiculoId, usuarioId, dataInicio, dataFinal, precoTotal, qtdDias) => {
+  const veiculoExistente = await Veiculos.findById(veiculoId)
+
+  if (!veiculoExistente) {
+
     return res.status(400).json({ message: "Veiculo não encontrado" });
-  if (veiculoExistente.status !== "disponível")
+  }
+
+  if (veiculoExistente.status !== "disponível") {
     return res.status(400).json({ message: "Veiculo indisponivel" });
+  }
 
-  const novaLocacao = new Locacoes({
+
+  const locacaoSave = await new Locacoes({
     veiculoId,
-    userId,
-    dataInicio,
-    dataFinal,
-    precoTotal
-  })
+    usuarioId,
+    dataInicio: new Date(dataInicio),
+    dataFinal: new Date(dataFinal),
+    precoTotal: Number(precoTotal),
+    qtdDias: Number(qtdDias)
+  }).save();
 
-  await novaLocacao.save()
 
   veiculoExistente['status'] = "alugado";
   await veiculoExistente.save()
 
-  return "Locação feita com sucesso"
+  return locacaoSave
 }
 
 export const cancelarLocacaoService = async (id) => {
@@ -42,8 +48,15 @@ export const cancelarLocacaoService = async (id) => {
 }
 
 export const listarLocacoesUsuarioService = async (id) => {
+  const locacoes = await Locacoes.find({ usuarioId: id });
 
-  const veiculos = await Locacoes.find({ userId: id });
+  const locacoesEVeiculos = await Promise.all(locacoes.map(async (locacao) => {
+    const veiculo = await Veiculos.findById(locacao.veiculoId);
+    return {
+      ...locacao.toObject(),
+      veiculo
+    };
+  }));
 
-  return veiculos;
+  return locacoesEVeiculos;
 }

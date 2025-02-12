@@ -16,6 +16,10 @@ const locacoesSchema = new mongoose.Schema({
   precoTotal: {
     type: Number, required: true
   },
+  qtdDias: {
+    type: Number,
+    required: true
+  },
 });
 
 const Locacoes = mongoose.model('Locacoes', locacoesSchema);

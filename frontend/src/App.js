@@ -9,6 +9,8 @@ import Header from './components/Header';
 import { GlobalStorage } from './context/GlobalContext';
 import Login from './screens/Login';
 import CriarConta from './screens/CriarConta';
+import ListarVeiculos from './screens/ListarVeiculos';
+import AlugarVeiculo from './screens/AlugarVeiculo';
 
 function App() {
 
@@ -24,7 +26,9 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/criar-conta" element={<CriarConta />} />
             <Route path="veiculos" element={<Veiculos />}>
+              <Route path="listar" element={<ListarVeiculos />} />
               <Route path="criar" element={<CriarVeiculo />} />
+              <Route path="alugar/:id" element={<AlugarVeiculo />} />
             </Route>
             <Route path="locacoes" element={<Locacoes />}>
               <Route path="minhas-locacoes" element={<MinhasLocacoes />} />

@@ -7,18 +7,22 @@ export const criarLocacao = async (req, res) => {
       userId,
       dataInicio,
       dataFinal,
-      precoTotal
+      precoTotal,
+      qtdDias
     } = req.body;
 
     const response = await criarLocacaoService(veiculoId,
       userId,
       dataInicio,
       dataFinal,
-      precoTotal);
+      precoTotal,
+      qtdDias
+    );
 
     return res.status(201).json(response);
   } catch (error) {
-    return res.status(500).json({ message: "Erro ao criar", error });
+    console.error('Erro ao salvar locação:', error);
+    return res.status(500).json({ message: 'Erro ao salvar locação', error });
   }
 }
 

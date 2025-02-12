@@ -41,7 +41,12 @@ export const listarVeiculosService = async (filtros) => {
   }
 
   if (filtros.ano) {
-    query.ano = { $regex: filtros.ano, $options: "i" };
+    const ano = Number(filtros.ano);
+    if (!isNaN(ano)) {
+      query.ano = ano;
+    } else {
+      throw new Error('Ano inválido');
+    }
   }
 
   if (filtros.status) {
@@ -51,5 +56,13 @@ export const listarVeiculosService = async (filtros) => {
   const veiculos = await Veiculos.find(query);
 
   return veiculos;
+}
+
+export const listarVeiculoByIdService = async (id) => {
+
+
+  const veiculo = await Veiculos.findById(id);
+
+  return veiculo;
 }
 

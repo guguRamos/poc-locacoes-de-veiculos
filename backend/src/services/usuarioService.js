@@ -16,9 +16,13 @@ export const criarUsuarioService = async (nome, email, senha) => {
     senha: senhaHash,
   });
 
-  await novoUsuario.save();
+  const usuarioSave = await novoUsuario.save();
 
-  return "Usuário criado";
+  return {
+    id: usuarioSave._id,
+    nome: usuarioSave.nome,
+    email: usuarioSave.email
+  };
 }
 
 export const loginService = async (email, senha) => {
@@ -32,5 +36,9 @@ export const loginService = async (email, senha) => {
     return res.status(400).json({ message: "E-mail ou/e senha inválidos" });
   }
 
-  return true;
+  return {
+    id: usuarioExistente._id,
+    nome: usuarioExistente.nome,
+    email: usuarioExistente.email
+  };
 }
