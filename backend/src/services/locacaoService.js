@@ -31,11 +31,12 @@ export const criarLocacaoService = async (veiculoId, usuarioId, dataInicio, data
 }
 
 export const cancelarLocacaoService = async (id) => {
-  const locacaoExistente = Locacoes.findById(id)
-  const veiculoExistente = Veiculos.findById(locacaoExistente.veiculoId)
+  const locacaoExistente = await Locacoes.findById(id)
 
   if (!locacaoExistente)
     return res.status(400).json({ message: "Locação não encontrado" });
+
+  const veiculoExistente = await Veiculos.findById(locacaoExistente.veiculoId)
   if (!veiculoExistente)
     return res.status(400).json({ message: "Veiculo não encontrado" });
 

@@ -40,7 +40,7 @@ const ListarVeiculos = () => {
     });
 
     if (!response.ok) {
-      throw new Error('Erro no listar');
+      throw new Error('Erro no apagar');
     }
 
     getVeiculos()

@@ -22,6 +22,21 @@ const MinhasLocacoes = () => {
     setVeiculos(data);
   }
 
+  async function cancelarLocacao(id) {
+    const response = await fetch(`http://localhost:3000/locacao/cancelar/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error('Erro no cancelar');
+    }
+
+    getLocacoes()
+  }
+
   useEffect(() => {
     getLocacoes()
   }, [])
@@ -40,7 +55,7 @@ const MinhasLocacoes = () => {
             <p>Preço do dia: R$ {data.veiculo.precoDia}</p>
             <p style={{ fontWeight: '700' }}>Preço total: R$ {data.precoTotal}</p>
             <div style={{ display: 'flex', gap: "16px" }}>
-              <button>Cancelar</button>
+              <button onClick={() => cancelarLocacao(data._id)}>Cancelar</button>
             </div>
           </div>
           )

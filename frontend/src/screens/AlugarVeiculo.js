@@ -72,7 +72,6 @@ const AlugarVeiculo = () => {
       precoTotal: veiculo.precoDia * qtdDias,
       qtdDias: calcularQtdDias()
     }
-    console.log(request)
 
     const response = await fetch('http://localhost:3000/locacao/criar', {
       method: 'POST',
@@ -81,13 +80,12 @@ const AlugarVeiculo = () => {
       },
       body: JSON.stringify(request),
     });
-    const data = await response.json();
+    await response.json();
 
     if (!response.ok) {
       throw new Error('Erro no criar locação');
     }
 
-    // const data = await response.json();
 
     navigate('/')
   }
