@@ -12,6 +12,9 @@ const CriarConta = () => {
     const email = event.target.email.value;
     const senha = event.target.password.value;
 
+    if (!nome && !email && !senha)
+      throw new Error('Faltam dados')
+
     const response = await fetch('http://localhost:3000/usuario/criar', {
       method: 'POST',
       headers: {

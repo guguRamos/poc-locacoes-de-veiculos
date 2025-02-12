@@ -30,6 +30,22 @@ const ListarVeiculos = () => {
     setVeiculos(data);
   }
 
+  async function apagarVeiculo(id) {
+
+    const response = await fetch(`http://localhost:3000/veiculos/apagar/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error('Erro no listar');
+    }
+
+    getVeiculos()
+  }
+
   useEffect(() => {
     getVeiculos()
   }, [])
@@ -77,8 +93,8 @@ const ListarVeiculos = () => {
             <p>Preço do dia: R$ {data.precoDia}</p>
             <div style={{ display: 'flex', gap: "16px" }}>
               {data.status === 'disponível' && <button onClick={() => navigate(`/veiculos/alugar/${data._id}`)}>Alugar</button>}
-              <button>Editar</button>
-              <button>Apagar</button>
+              <button onClick={() => navigate(`/veiculos/editar/${data._id}`)}>Editar</button>
+              <button onClick={() => apagarVeiculo(data._id)}>Apagar</button>
             </div>
           </div>
           )

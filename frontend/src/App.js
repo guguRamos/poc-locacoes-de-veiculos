@@ -11,6 +11,7 @@ import Login from './screens/Login';
 import CriarConta from './screens/CriarConta';
 import ListarVeiculos from './screens/ListarVeiculos';
 import AlugarVeiculo from './screens/AlugarVeiculo';
+import EditarVeiculo from './screens/EditarVeiculo';
 
 function App() {
 
@@ -29,6 +30,7 @@ function App() {
               <Route path="listar" element={<ListarVeiculos />} />
               <Route path="criar" element={<CriarVeiculo />} />
               <Route path="alugar/:id" element={<AlugarVeiculo />} />
+              <Route path="editar/:id" element={<EditarVeiculo />} />
             </Route>
             <Route path="locacoes" element={<Locacoes />}>
               <Route path="minhas-locacoes" element={<MinhasLocacoes />} />
