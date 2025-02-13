@@ -21,6 +21,9 @@ function App() {
 
       <BrowserRouter>
         <GlobalStorage>
+          <div style={{ backgroundColor: "#101010", padding: '8px 16px', borderRadius: "8px" }}>
+            <h1 style={{ color: "#fff" }}>POC Locações de veiculos</h1>
+          </div>
           <Header />
           <Routes>
             <Route path="/" element={<Home />} />

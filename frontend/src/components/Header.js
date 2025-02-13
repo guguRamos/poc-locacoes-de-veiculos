@@ -10,33 +10,24 @@ const Header = () => {
   if (location.pathname !== '/login' && location.pathname !== '/criar-conta')
     return (
       <div className={styles.divMain}>
-        <h1 >POC Locações de veiculos</h1>
-        <nav>
-          <ul style={{ listStyle: 'none' }}>
+        <nav style={{ width: "100%" }}>
+          <ul style={{ listStyle: 'none', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '16px', backgroundColor: "#ddd", width: "100%", padding: '12px 24px', borderRadius: "8px" }}>
             <li
-              style={{ cursor: 'pointer' }}
-            >
-              <a onClick={() => navigate("/")}>
-                Home
-              </a>
-            </li>
-            <li
-
-              style={{ cursor: 'pointer' }}
+              style={{ cursor: 'pointer', color: "#00f", textDecoration: 'underline' }}
             >
               <a onClick={() => navigate("/veiculos")}>
                 Veiculos
               </a>
             </li>
             <li
-              style={{ cursor: 'pointer' }}
+              style={{ cursor: 'pointer', color: "#00f", textDecoration: 'underline' }}
             >
               <a onClick={() => navigate("/locacoes/minhas-locacoes")}>
                 Minhas locações
               </a>
             </li>
             <li
-              style={{ cursor: 'pointer' }}
+              style={{ cursor: 'pointer', color: "#00f", textDecoration: 'underline' }}
             >
               <a onClick={() => {
                 setUser(null)

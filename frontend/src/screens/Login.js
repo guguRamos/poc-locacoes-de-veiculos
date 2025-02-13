@@ -30,7 +30,7 @@ const Login = () => {
     window.localStorage.setItem('user', JSON.stringify(data))
     setUser(data);
 
-    navigate('/')
+    navigate('/veiculos')
   }
   return (
     <div style={{ padding: '64px' }}>
